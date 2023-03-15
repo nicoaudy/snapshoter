@@ -86,7 +86,11 @@ class _InitialPageState extends State<InitialPage> {
                           width: 40,
                           decoration: const BoxDecoration(
                             shape: BoxShape.circle,
-                            color: Colors.red,
+                            gradient: LinearGradient(
+                              colors: [Color(0xffe91e63), Color(0xffffc107)],
+                              begin: Alignment.centerRight,
+                              end: Alignment.centerLeft,
+                            ),
                           ),
                         );
                       },
