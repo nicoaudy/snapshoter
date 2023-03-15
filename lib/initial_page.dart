@@ -1,7 +1,9 @@
 import 'package:example/constants.dart';
+import 'package:example/mock.dart';
 import 'package:example/pages/indicators_page.dart';
 import 'package:example/providers/editor_provider.dart';
 import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:macos_ui/macos_ui.dart';
 
@@ -84,29 +86,36 @@ class InitialPage extends ConsumerWidget {
                   child: Text('Background'),
                 ),
                 Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 10),
+                  padding: const EdgeInsets.symmetric(horizontal: 15),
                   child: SizedBox(
                     height: 40,
                     child: ListView.separated(
                       scrollDirection: Axis.horizontal,
                       shrinkWrap: true,
-                      itemCount: 20,
+                      itemCount: gradients.length,
                       itemBuilder: (BuildContext context, int index) {
-                        return Container(
-                          height: 40,
-                          width: 40,
-                          decoration: const BoxDecoration(
-                            shape: BoxShape.circle,
-                            gradient: LinearGradient(
-                              colors: [Color(0xffe91e63), Color(0xffffc107)],
-                              begin: Alignment.centerRight,
-                              end: Alignment.centerLeft,
+                        return GestureDetector(
+                          onTap: () {
+                            ref
+                                .read(editorProvider.notifier)
+                                .changeBackground(index);
+                          },
+                          child: Container(
+                            height: 40,
+                            width: 40,
+                            decoration: BoxDecoration(
+                              shape: BoxShape.circle,
+                              gradient: LinearGradient(
+                                colors: gradients[index],
+                                begin: Alignment.centerRight,
+                                end: Alignment.centerLeft,
+                              ),
                             ),
                           ),
                         );
                       },
                       separatorBuilder: (BuildContext context, int index) {
-                        return const SizedBox(width: 6);
+                        return const SizedBox(width: 8);
                       },
                     ),
                   ),

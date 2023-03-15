@@ -2,6 +2,7 @@ import 'dart:io';
 
 import 'package:cross_file/cross_file.dart';
 import 'package:example/constants.dart';
+import 'package:example/mock.dart';
 import 'package:example/providers/editor_provider.dart';
 import 'package:example/providers/theme_provider.dart';
 import 'package:example/widgets/dropzone.dart';
@@ -33,9 +34,9 @@ class _IndicatorsPageState extends ConsumerState<IndicatorsPage> {
       return Stack(
         children: [
           Container(
-            decoration: const BoxDecoration(
+            decoration: BoxDecoration(
               gradient: LinearGradient(
-                colors: [Color(0xffe91e63), Color(0xffffc107)],
+                colors: gradients[editor.background],
                 begin: Alignment.centerRight,
                 end: Alignment.centerLeft,
               ),
