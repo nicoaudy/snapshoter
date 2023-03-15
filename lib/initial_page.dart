@@ -51,16 +51,41 @@ class _InitialPageState extends State<InitialPage> {
       child: MacosWindow(
         sidebar: Sidebar(
           minWidth: 200,
+          shownByDefault: true,
           builder: (context, scrollController) {
-            return SidebarItems(
-              currentIndex: pageIndex,
-              onChanged: (i) => {},
-              scrollController: scrollController,
-              itemSize: SidebarItemSize.large,
-              items: const [
-                SidebarItem(
-                  leading: MacosIcon(CupertinoIcons.square_on_circle),
-                  label: Text('Buttons'),
+            return Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                const Padding(
+                  padding: EdgeInsets.symmetric(horizontal: 10, vertical: 5),
+                  child: Text('Border Radius'),
+                ),
+                MacosSlider(
+                  min: 0,
+                  max: 100,
+                  value: 20,
+                  onChanged: (i) {},
+                ),
+                const SizedBox(height: 20),
+                const Padding(
+                  padding: EdgeInsets.symmetric(horizontal: 10, vertical: 5),
+                  child: Text('Position'),
+                ),
+                MacosSlider(
+                  min: 0,
+                  max: 100,
+                  value: 20,
+                  onChanged: (i) {},
+                ),
+                const SizedBox(height: 40),
+                const MacosPulldownMenuDivider(),
+                Padding(
+                  padding: const EdgeInsets.all(6),
+                  child: PushButton(
+                    buttonSize: ButtonSize.small,
+                    child: const Text('Export'),
+                    onPressed: () {},
+                  ),
                 ),
               ],
             );
