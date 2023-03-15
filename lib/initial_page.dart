@@ -1,6 +1,7 @@
 import 'package:example/constants.dart';
 import 'package:example/pages/indicators_page.dart';
 import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
 import 'package:macos_ui/macos_ui.dart';
 
 class InitialPage extends StatefulWidget {
@@ -66,21 +67,47 @@ class _InitialPageState extends State<InitialPage> {
                   value: 20,
                   onChanged: (i) {},
                 ),
-                const SizedBox(height: 20),
+                const SizedBox(height: 10),
                 const Padding(
                   padding: EdgeInsets.symmetric(horizontal: 10, vertical: 5),
-                  child: Text('Position'),
+                  child: Text('Background'),
                 ),
-                MacosSlider(
-                  min: 0,
-                  max: 100,
-                  value: 20,
-                  onChanged: (i) {},
+                Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 10),
+                  child: SizedBox(
+                    height: 40,
+                    child: ListView.separated(
+                      scrollDirection: Axis.horizontal,
+                      shrinkWrap: true,
+                      itemCount: 20,
+                      itemBuilder: (BuildContext context, int index) {
+                        return Container(
+                          height: 40,
+                          width: 40,
+                          decoration: const BoxDecoration(
+                            shape: BoxShape.circle,
+                            color: Colors.red,
+                          ),
+                        );
+                      },
+                      separatorBuilder: (BuildContext context, int index) {
+                        return const SizedBox(width: 6);
+                      },
+                    ),
+                  ),
                 ),
-                const SizedBox(height: 40),
+                const SizedBox(height: 10),
+                const Padding(
+                  padding: EdgeInsets.symmetric(horizontal: 10, vertical: 5),
+                  child: Text('Direction'),
+                ),
+                const SizedBox(height: 20),
                 const MacosPulldownMenuDivider(),
                 Padding(
-                  padding: const EdgeInsets.all(6),
+                  padding: const EdgeInsets.symmetric(
+                    horizontal: 6,
+                    vertical: 6,
+                  ),
                   child: PushButton(
                     buttonSize: ButtonSize.small,
                     child: const Text('Export'),
