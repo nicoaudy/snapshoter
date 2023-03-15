@@ -2,19 +2,21 @@ import 'dart:io';
 
 import 'package:cross_file/cross_file.dart';
 import 'package:example/constants.dart';
+import 'package:example/providers/theme_provider.dart';
 import 'package:example/widgets/dropzone.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:macos_ui/macos_ui.dart';
 // ignore: implementation_imports
 import 'package:macos_ui/src/library.dart';
 
-class IndicatorsPage extends StatefulWidget {
+class IndicatorsPage extends ConsumerStatefulWidget {
   const IndicatorsPage({super.key});
 
   @override
-  State<IndicatorsPage> createState() => _IndicatorsPageState();
+  ConsumerState<ConsumerStatefulWidget> createState() => _IndicatorsPageState();
 }
 
-class _IndicatorsPageState extends State<IndicatorsPage> {
+class _IndicatorsPageState extends ConsumerState<IndicatorsPage> {
   XFile? uploadFile;
   File? file;
 
@@ -47,6 +49,8 @@ class _IndicatorsPageState extends State<IndicatorsPage> {
 
   @override
   Widget build(BuildContext context) {
+    final theme = ref.watch(themeProvider);
+
     return MacosScaffold(
       toolBar: ToolBar(
         title: const Text(appName),
@@ -72,6 +76,18 @@ class _IndicatorsPageState extends State<IndicatorsPage> {
             onPressed: () => MacosWindowScope.of(context).toggleSidebar(),
           ),
         ),
+        actions: [
+          ToolBarIconButton(
+            icon: Icon(theme.mode == ThemeMode.light
+                ? CupertinoIcons.sun_min
+                : CupertinoIcons.moon),
+            label: 'Theme',
+            showLabel: false,
+            onPressed: () {
+              ref.read(themeProvider).changeMode();
+            },
+          ),
+        ],
       ),
       children: [
         ContentArea(

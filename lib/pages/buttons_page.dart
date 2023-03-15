@@ -1,9 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:macos_ui/macos_ui.dart';
-import 'package:provider/provider.dart';
-
-import '../theme.dart';
 
 class ButtonsPage extends StatefulWidget {
   const ButtonsPage({super.key});
@@ -372,51 +369,6 @@ class _ButtonsPageState extends State<ButtonsPage> {
                               child: Text(value),
                             );
                           }).toList(),
-                        ),
-                        const SizedBox(height: 20),
-                        Row(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: [
-                            const Text('System Theme'),
-                            const SizedBox(width: 8),
-                            MacosRadioButton<ThemeMode>(
-                              groupValue: context.watch<AppTheme>().mode,
-                              value: ThemeMode.system,
-                              onChanged: (value) {
-                                context.read<AppTheme>().mode = value!;
-                              },
-                            ),
-                          ],
-                        ),
-                        const SizedBox(height: 8),
-                        Row(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: [
-                            const Text('Light Theme'),
-                            const SizedBox(width: 24),
-                            MacosRadioButton<ThemeMode>(
-                              groupValue: context.watch<AppTheme>().mode,
-                              value: ThemeMode.light,
-                              onChanged: (value) {
-                                context.read<AppTheme>().mode = value!;
-                              },
-                            ),
-                          ],
-                        ),
-                        const SizedBox(height: 8),
-                        Row(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: [
-                            const Text('Dark Theme'),
-                            const SizedBox(width: 26),
-                            MacosRadioButton<ThemeMode>(
-                              groupValue: context.watch<AppTheme>().mode,
-                              value: ThemeMode.dark,
-                              onChanged: (value) {
-                                context.read<AppTheme>().mode = value!;
-                              },
-                            ),
-                          ],
                         ),
                         const SizedBox(height: 20),
                         const Text('MacosSegmentedControl'),
