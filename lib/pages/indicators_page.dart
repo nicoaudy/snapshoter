@@ -25,10 +25,22 @@ class _IndicatorsPageState extends State<IndicatorsPage> {
         setState(() => file = File(uploadFile!.path));
       });
     } else {
-      return SingleChildScrollView(
-        child: Column(
-          children: const [Center(child: Text('Hello world'))],
-        ),
+      return Stack(
+        children: [
+          Container(
+            decoration: const BoxDecoration(
+              gradient: LinearGradient(
+                colors: [Color(0xffe91e63), Color(0xffffc107)],
+                begin: Alignment.centerRight,
+                end: Alignment.centerLeft,
+              ),
+            ),
+          ),
+          Padding(
+            padding: const EdgeInsets.all(50),
+            child: Center(child: Image.file(file!)),
+          ),
+        ],
       );
     }
   }

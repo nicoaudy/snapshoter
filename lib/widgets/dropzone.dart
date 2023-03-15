@@ -27,7 +27,7 @@ class DropZoneState extends State<DropZone> {
         if (ok) {
           widget.onFile(detail.files.first);
         } else {
-          errorToast(context, 'File is not an image', 450);
+          errorToast(context, 'File is not an image', 350);
         }
       },
       onDragUpdated: (details) {},

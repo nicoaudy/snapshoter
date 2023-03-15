@@ -7,8 +7,8 @@ errorToast(BuildContext context, String title, double width) {
       context,
       height: 60,
       width: width,
-      alignment: Alignment.topCenter,
-      label: Text(title, style: const TextStyle(fontSize: 30)),
+      alignment: Alignment.topRight,
+      label: Text(title, style: const TextStyle(fontSize: 20)),
     ),
   );
 }
