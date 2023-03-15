@@ -1,6 +1,7 @@
 import 'package:example/constants.dart';
 import 'package:example/initial_page.dart';
 import 'package:flutter/cupertino.dart';
+import 'package:flutter_hot_toast/flutter_hot_toast.dart';
 import 'package:macos_ui/macos_ui.dart';
 import 'package:provider/provider.dart';
 
@@ -15,13 +16,15 @@ class App extends StatelessWidget {
       create: (_) => AppTheme(),
       builder: (context, _) {
         final appTheme = context.watch<AppTheme>();
-        return MacosApp(
-          title: appName,
-          theme: MacosThemeData.light(),
-          darkTheme: MacosThemeData.dark(),
-          themeMode: appTheme.mode,
-          debugShowCheckedModeBanner: false,
-          home: const InitialPage(),
+        return GlobalLoaderOverlay(
+          child: MacosApp(
+            title: appName,
+            theme: MacosThemeData.light(),
+            darkTheme: MacosThemeData.dark(),
+            themeMode: appTheme.mode,
+            debugShowCheckedModeBanner: false,
+            home: const InitialPage(),
+          ),
         );
       },
     );

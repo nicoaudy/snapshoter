@@ -1,7 +1,6 @@
 import 'package:example/constants.dart';
 import 'package:example/pages/indicators_page.dart';
 import 'package:flutter/cupertino.dart';
-import 'package:flutter/material.dart';
 import 'package:macos_ui/macos_ui.dart';
 
 class InitialPage extends StatefulWidget {
@@ -57,6 +56,16 @@ class _InitialPageState extends State<InitialPage> {
             return Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
+                const Padding(
+                  padding: EdgeInsets.symmetric(horizontal: 10, vertical: 5),
+                  child: Text('Padding'),
+                ),
+                MacosSlider(
+                  min: 0,
+                  max: 100,
+                  value: 20,
+                  onChanged: (i) {},
+                ),
                 const Padding(
                   padding: EdgeInsets.symmetric(horizontal: 10, vertical: 5),
                   child: Text('Border Radius'),

@@ -1,4 +1,8 @@
+import 'dart:io';
+
+import 'package:cross_file/cross_file.dart';
 import 'package:example/constants.dart';
+import 'package:example/widgets/dropzone.dart';
 import 'package:macos_ui/macos_ui.dart';
 // ignore: implementation_imports
 import 'package:macos_ui/src/library.dart';
@@ -11,9 +15,23 @@ class IndicatorsPage extends StatefulWidget {
 }
 
 class _IndicatorsPageState extends State<IndicatorsPage> {
-  double ratingValue = 0;
-  double capacitorValue = 0;
-  double sliderValue = 0.3;
+  XFile? uploadFile;
+  File? file;
+
+  buildUi() {
+    if (uploadFile == null) {
+      return DropZone(onFile: (XFile payload) {
+        setState(() => uploadFile = payload);
+        setState(() => file = File(uploadFile!.path));
+      });
+    } else {
+      return SingleChildScrollView(
+        child: Column(
+          children: const [Center(child: Text('Hello world'))],
+        ),
+      );
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -46,12 +64,7 @@ class _IndicatorsPageState extends State<IndicatorsPage> {
       children: [
         ContentArea(
           builder: (context, scrollController) {
-            return SingleChildScrollView(
-              padding: const EdgeInsets.all(20),
-              child: Column(
-                children: const [Center(child: Text('Hello world'))],
-              ),
-            );
+            return buildUi();
           },
         ),
       ],
