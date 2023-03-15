@@ -84,7 +84,7 @@ class _IndicatorsPageState extends ConsumerState<IndicatorsPage> {
             label: 'Theme',
             showLabel: false,
             onPressed: () {
-              ref.read(themeProvider).changeMode();
+              ref.read(themeProvider.notifier).changeMode();
             },
           ),
         ],
