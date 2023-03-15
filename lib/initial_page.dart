@@ -3,7 +3,6 @@ import 'package:example/mock.dart';
 import 'package:example/pages/indicators_page.dart';
 import 'package:example/providers/editor_provider.dart';
 import 'package:flutter/cupertino.dart';
-import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:macos_ui/macos_ui.dart';
 
