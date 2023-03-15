@@ -1,3 +1,4 @@
+import 'package:example/constants.dart';
 import 'package:macos_ui/macos_ui.dart';
 // ignore: implementation_imports
 import 'package:macos_ui/src/library.dart';
@@ -18,8 +19,8 @@ class _IndicatorsPageState extends State<IndicatorsPage> {
   Widget build(BuildContext context) {
     return MacosScaffold(
       toolBar: ToolBar(
-        title: const Text('TBD'),
-        titleWidth: 150.0,
+        title: const Text(appName),
+        titleWidth: 200.0,
         actions: [
           ToolBarIconButton(
             label: 'Toggle Sidebar',
