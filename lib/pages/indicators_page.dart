@@ -79,8 +79,8 @@ class _IndicatorsPageState extends ConsumerState<IndicatorsPage> {
         actions: [
           ToolBarIconButton(
             icon: Icon(theme.mode == ThemeMode.light
-                ? CupertinoIcons.sun_min
-                : CupertinoIcons.moon),
+                ? CupertinoIcons.moon
+                : CupertinoIcons.sun_min),
             label: 'Theme',
             showLabel: false,
             onPressed: () {
