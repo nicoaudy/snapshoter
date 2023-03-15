@@ -2,12 +2,13 @@ import 'dart:io';
 
 import 'package:cross_file/cross_file.dart';
 import 'package:example/constants.dart';
+import 'package:example/providers/editor_provider.dart';
 import 'package:example/providers/theme_provider.dart';
 import 'package:example/widgets/dropzone.dart';
+import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:macos_ui/macos_ui.dart';
-// ignore: implementation_imports
-import 'package:macos_ui/src/library.dart';
 
 class IndicatorsPage extends ConsumerStatefulWidget {
   const IndicatorsPage({super.key});
@@ -21,6 +22,8 @@ class _IndicatorsPageState extends ConsumerState<IndicatorsPage> {
   File? file;
 
   buildUi() {
+    final editor = ref.watch(editorProvider);
+
     if (uploadFile == null) {
       return DropZone(onFile: (XFile payload) {
         setState(() => uploadFile = payload);
@@ -38,10 +41,19 @@ class _IndicatorsPageState extends ConsumerState<IndicatorsPage> {
               ),
             ),
           ),
-          Padding(
-            padding: const EdgeInsets.all(50),
-            child: Center(child: Image.file(file!)),
-          ),
+          Center(
+            child: Container(
+              width: MediaQuery.of(context).size.width / editor.zoom,
+              height: MediaQuery.of(context).size.height / editor.zoom,
+              decoration: BoxDecoration(
+                image: DecorationImage(
+                  image: FileImage(file!),
+                  fit: BoxFit.cover,
+                ),
+                borderRadius: BorderRadius.circular(editor.radius),
+              ),
+            ),
+          )
         ],
       );
     }
@@ -49,8 +61,6 @@ class _IndicatorsPageState extends ConsumerState<IndicatorsPage> {
 
   @override
   Widget build(BuildContext context) {
-    final theme = ref.watch(themeProvider);
-
     return MacosScaffold(
       toolBar: ToolBar(
         title: const Text(appName),
@@ -77,15 +87,47 @@ class _IndicatorsPageState extends ConsumerState<IndicatorsPage> {
           ),
         ),
         actions: [
-          ToolBarIconButton(
-            icon: Icon(theme.mode == ThemeMode.light
-                ? CupertinoIcons.moon
-                : CupertinoIcons.sun_min),
+          if (file != null)
+            ToolBarIconButton(
+              label: 'Delete',
+              icon: const MacosIcon(
+                CupertinoIcons.trash,
+              ),
+              showLabel: false,
+              onPressed: () {
+                setState(() {
+                  uploadFile = null;
+                  file = null;
+                });
+              },
+            ),
+          const ToolBarDivider(),
+          ToolBarPullDownButton(
             label: 'Theme',
-            showLabel: false,
-            onPressed: () {
-              ref.read(themeProvider.notifier).changeMode();
-            },
+            icon: CupertinoIcons.moon_circle,
+            items: [
+              MacosPulldownMenuItem(
+                label: 'Dark',
+                title: const Text('Dark'),
+                onTap: () {
+                  ref.read(themeProvider.notifier).changeMode(ThemeMode.dark);
+                },
+              ),
+              MacosPulldownMenuItem(
+                label: 'Light',
+                title: const Text('Light'),
+                onTap: () {
+                  ref.read(themeProvider.notifier).changeMode(ThemeMode.light);
+                },
+              ),
+              MacosPulldownMenuItem(
+                label: 'System',
+                title: const Text('System'),
+                onTap: () {
+                  ref.read(themeProvider.notifier).changeMode(ThemeMode.system);
+                },
+              ),
+            ],
           ),
         ],
       ),

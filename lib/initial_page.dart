@@ -1,24 +1,16 @@
 import 'package:example/constants.dart';
 import 'package:example/pages/indicators_page.dart';
+import 'package:example/providers/editor_provider.dart';
 import 'package:flutter/cupertino.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:macos_ui/macos_ui.dart';
 
-class InitialPage extends StatefulWidget {
+class InitialPage extends ConsumerWidget {
   const InitialPage({super.key});
 
   @override
-  State<InitialPage> createState() => _InitialPageState();
-}
-
-class _InitialPageState extends State<InitialPage> {
-  int pageIndex = 0;
-
-  final List<Widget> pages = [
-    const IndicatorsPage(),
-  ];
-
-  @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
+    final editor = ref.watch(editorProvider);
     return PlatformMenuBar(
       menus: const [
         PlatformMenu(
@@ -50,7 +42,7 @@ class _InitialPageState extends State<InitialPage> {
       ],
       child: MacosWindow(
         sidebar: Sidebar(
-          minWidth: 200,
+          minWidth: 240,
           shownByDefault: true,
           builder: (context, scrollController) {
             return Column(
@@ -58,23 +50,33 @@ class _InitialPageState extends State<InitialPage> {
               children: [
                 const Padding(
                   padding: EdgeInsets.symmetric(horizontal: 10, vertical: 5),
-                  child: Text('Padding'),
+                  child: Text('Size'),
                 ),
-                MacosSlider(
-                  min: 0,
-                  max: 100,
-                  value: 20,
-                  onChanged: (i) {},
+                Padding(
+                  padding: const EdgeInsets.only(right: 10, left: 10),
+                  child: MacosSlider(
+                    min: 1.4,
+                    max: 2.5,
+                    value: editor.zoom,
+                    onChanged: (i) {
+                      ref.read(editorProvider.notifier).changeZoom(i);
+                    },
+                  ),
                 ),
                 const Padding(
                   padding: EdgeInsets.symmetric(horizontal: 10, vertical: 5),
                   child: Text('Border Radius'),
                 ),
-                MacosSlider(
-                  min: 0,
-                  max: 100,
-                  value: 20,
-                  onChanged: (i) {},
+                Padding(
+                  padding: const EdgeInsets.only(right: 10, left: 10),
+                  child: MacosSlider(
+                    min: 0,
+                    max: 50,
+                    value: editor.radius,
+                    onChanged: (i) {
+                      ref.read(editorProvider.notifier).changeRadius(i);
+                    },
+                  ),
                 ),
                 const SizedBox(height: 10),
                 const Padding(
@@ -136,7 +138,7 @@ class _InitialPageState extends State<InitialPage> {
             subtitle: Text('tim@apple.com'),
           ),
         ),
-        child: IndexedStack(index: pageIndex, children: pages),
+        child: const IndicatorsPage(),
       ),
     );
   }
