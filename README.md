@@ -1,16 +1,34 @@
-# example
+# Snapshoter
 
-A new Flutter project.
+Snapshoter is a free, open-source app that allows you to make beautiful image & screenshot with ease.
 
 ## Getting Started
 
-This project is a starting point for a Flutter application.
+To get started with Snapshoter, follow these steps:
 
-A few resources to get you started if this is your first Flutter project:
+1. Install [Flutter](https://flutter.dev)
+2. Install `curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh` for clipboard requirement
+3. Clone the Snapshoter repository
+4. Run `flutter pub get` to download dependencies
+5. Run `flutter run` to start the app
 
-- [Lab: Write your first Flutter app](https://flutter.dev/docs/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://flutter.dev/docs/cookbook)
+## Contributing
 
-For help getting started with Flutter, view our
-[online documentation](https://flutter.dev/docs), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+We welcome contributions from anyone who is interested in helping improve Snapshoter. If you'd like to contribute, there are a few ways to get involved:
+
+### Bug fixes and improvements
+
+- **Bug Fixes:** If you find a bug, please create a pull request with a clear description of the issue and how to fix it.
+- **Improvements:** Have an idea for how to improve Snapshoter? Please create an issue first so we can discuss why the improvement is needed.
+
+For more information, see the [contributing guide](https://github.com/nicoaudy/snapshoter/blob/main/CONTRIBUTING.md).
+
+## Building
+
+These commands are intended for maintainers only.
+
+### MacOS
+
+```bash
+flutter build macos
+```
