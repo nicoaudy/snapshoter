@@ -49,4 +49,4 @@ app.*.map.json
 /windows/
 linux/
 
-/installers/dmg_creator/snapshooter.dmg
+/installers/dmg_creator/snapshoter.dmg
