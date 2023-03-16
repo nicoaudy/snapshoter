@@ -83,7 +83,7 @@ class _EditorPageState extends ConsumerState<EditorPage> {
   }
 
   void copyImage(Uint8List image) async {
-    final item = DataWriterItem(suggestedName: 'snapshooter.png');
+    final item = DataWriterItem(suggestedName: 'snapshoter.png');
     item.add(Formats.png(image));
     await ClipboardWriter.instance.write([item]);
   }
