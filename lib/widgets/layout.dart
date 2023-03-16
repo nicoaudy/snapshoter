@@ -7,7 +7,8 @@ import 'package:macos_ui/macos_ui.dart';
 
 class Layout extends ConsumerWidget {
   final Widget child;
-  const Layout({super.key, required this.child});
+  final Function onScreenshot;
+  const Layout({super.key, required this.child, required this.onScreenshot});
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
@@ -144,9 +145,10 @@ class Layout extends ConsumerWidget {
                     vertical: 6,
                   ),
                   child: PushButton(
+                    isSecondary: true,
                     buttonSize: ButtonSize.small,
-                    child: const Text('Export'),
-                    onPressed: () {},
+                    child: const Text('Copy to clipboard'),
+                    onPressed: () => onScreenshot(),
                   ),
                 ),
               ],
