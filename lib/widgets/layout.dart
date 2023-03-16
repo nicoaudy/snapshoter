@@ -136,11 +136,6 @@ class Layout extends ConsumerWidget {
                     ),
                   ),
                 ),
-                const SizedBox(height: 10),
-                const Padding(
-                  padding: EdgeInsets.symmetric(horizontal: 10, vertical: 5),
-                  child: Text('Direction'),
-                ),
                 const SizedBox(height: 20),
                 const MacosPulldownMenuDivider(),
                 Padding(
