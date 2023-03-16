@@ -1,6 +1,11 @@
+<img src="https://github.com/nicoaudy/snapshoter/blob/main/assets/logo-withoutbg.png" height="150">
+
+
 # Snapshoter
 
 Snapshoter is a free, open-source app that allows you to make beautiful image & screenshot with ease.
+
+
 
 ## Getting Started
 
