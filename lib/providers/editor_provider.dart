@@ -1,31 +1,25 @@
-import 'package:flutter/material.dart';
+import 'package:example/models/editor.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-final editorProvider = ChangeNotifierProvider<EditorProvider>(
-  (_) => EditorProvider(),
+final editorProvider = StateNotifierProvider<EditorProvider, Editor>(
+  (ref) => EditorProvider(),
 );
 
-class EditorProvider extends ChangeNotifier {
-  double _zoom = 1.5;
-  double _radius = 0;
-  int _background = 0;
+class EditorProvider extends StateNotifier<Editor> {
+  EditorProvider() : super(Editor());
 
-  double get zoom => _zoom;
-  double get radius => _radius;
-  int get background => _background;
-
-  changeZoom(double payload) {
-    _zoom = payload;
-    notifyListeners();
+  void changeZoom(double payload) {
+    final newState = state.copy(zoom: payload);
+    state = newState;
   }
 
-  changeRadius(double payload) {
-    _radius = payload;
-    notifyListeners();
+  void changeRadius(double payload) {
+    final newState = state.copy(radius: payload);
+    state = newState;
   }
 
-  changeBackground(int payload) {
-    _background = payload;
-    notifyListeners();
+  void changeBackground(int payload) {
+    final newState = state.copy(background: payload);
+    state = newState;
   }
 }
