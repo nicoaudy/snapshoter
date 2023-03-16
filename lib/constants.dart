@@ -1,1 +1,1 @@
-const appName = 'Beautiful Screenshot';
+const appName = 'Snapshooter';
