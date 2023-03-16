@@ -22,4 +22,9 @@ class EditorProvider extends StateNotifier<Editor> {
     final newState = state.copy(background: payload);
     state = newState;
   }
+
+  void changeShadow(double payload) {
+    final newState = state.copy(shadow: payload);
+    state = newState;
+  }
 }

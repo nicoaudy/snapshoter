@@ -1,5 +1,5 @@
 import 'package:example/constants.dart';
-import 'package:example/initial_page.dart';
+import 'package:example/pages/editor_page.dart';
 import 'package:example/providers/theme_provider.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_hot_toast/flutter_hot_toast.dart';
@@ -20,7 +20,7 @@ class App extends ConsumerWidget {
         darkTheme: MacosThemeData.dark(),
         themeMode: appTheme.mode,
         debugShowCheckedModeBanner: false,
-        home: const InitialPage(),
+        home: const EditorPage(),
       ),
     );
   }

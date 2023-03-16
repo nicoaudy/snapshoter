@@ -1,13 +1,13 @@
 import 'package:example/constants.dart';
 import 'package:example/mock.dart';
-import 'package:example/pages/indicators_page.dart';
 import 'package:example/providers/editor_provider.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:macos_ui/macos_ui.dart';
 
-class InitialPage extends ConsumerWidget {
-  const InitialPage({super.key});
+class Layout extends ConsumerWidget {
+  final Widget child;
+  const Layout({super.key, required this.child});
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
@@ -64,6 +64,7 @@ class InitialPage extends ConsumerWidget {
                     },
                   ),
                 ),
+                const SizedBox(height: 10),
                 const Padding(
                   padding: EdgeInsets.symmetric(horizontal: 10, vertical: 5),
                   child: Text('Border Radius'),
@@ -76,6 +77,22 @@ class InitialPage extends ConsumerWidget {
                     value: editor.radius,
                     onChanged: (i) {
                       ref.read(editorProvider.notifier).changeRadius(i);
+                    },
+                  ),
+                ),
+                const SizedBox(height: 10),
+                const Padding(
+                  padding: EdgeInsets.symmetric(horizontal: 10, vertical: 5),
+                  child: Text('Shadow'),
+                ),
+                Padding(
+                  padding: const EdgeInsets.only(right: 10, left: 10),
+                  child: MacosSlider(
+                    min: 0,
+                    max: 10,
+                    value: editor.shadow,
+                    onChanged: (i) {
+                      ref.read(editorProvider.notifier).changeShadow(i);
                     },
                   ),
                 ),
@@ -146,7 +163,7 @@ class InitialPage extends ConsumerWidget {
             subtitle: Text('tim@apple.com'),
           ),
         ),
-        child: const IndicatorsPage(),
+        child: child,
       ),
     );
   }
